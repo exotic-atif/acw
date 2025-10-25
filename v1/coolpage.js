@@ -2,6 +2,15 @@
   // Check if already injected
   if (document.getElementById("acw-coolpage-style")) return;
 
+  //Fontawsome loading if not loaded
+    if (!document.getElementById("fa7-cdn")) {
+    const fa7 = document.createElement("link");
+    fa7.id = "fa7-cdn";
+    fa7.rel = "stylesheet";
+    fa7.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css";
+    document.head.appendChild(fa7);
+  }
+
   // Create style element
   const style = document.createElement("style");
   style.id = "acw-coolpage-style";
