@@ -1,4 +1,5 @@
 (function() {
+  // Load Font Awesome 7 if not already loaded
   if (!document.getElementById("fa7-cdn")) {
     const fa7 = document.createElement("link");
     fa7.id = "fa7-cdn";
@@ -14,9 +15,27 @@
   // Dark mode styles
   const style = document.createElement("style");
   style.textContent = `
-    body.acw-dark-mode { background-color: #000012; color: #f5f5f5; transition: background 0.5s, color 0.5s; }
+    body.acw-dark-mode {
+      background-color: #000012;
+      color: #f5f5f5;
+      transition: background 0.5s, color 0.5s;
+    }
     body.acw-dark-mode a { color: #bb86fc; }
     body.acw-dark-mode button { filter: brightness(1.1); }
+
+    /* Dimmed input/textarea in dark mode */
+    body.acw-dark-mode input[type=text],
+    body.acw-dark-mode input[type=password],
+    body.acw-dark-mode textarea,
+    body.acw-dark-mode select {
+      background-color: #1f1f31;
+      color: #f5f5f5;
+      border-color: #333;
+    }
+    body.acw-dark-mode input::placeholder,
+    body.acw-dark-mode textarea::placeholder {
+      color: #aaa;
+    }
   `;
   document.head.appendChild(style);
 
