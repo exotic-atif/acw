@@ -103,22 +103,49 @@
   // -------------------------------
   // Navbar
   // -------------------------------
-  if (navbarTitle !== null) {
-    document.addEventListener("DOMContentLoaded", () => {
-      if (document.getElementById("acw-navbar")) return;
 
-      const nav = document.createElement("nav");
-      nav.id = "acw-navbar";
-      nav.textContent = navbarTitle || "ACW";
-      Object.assign(nav.style, {
-        position:"fixed", top:"0", left:"0", width:"100%", height:"50px",
-        backgroundColor:"#007BFF", color:"#fff", display:"flex", alignItems:"center",
-        justifyContent:"center", fontFamily:"'Outfit',sans-serif", fontSize:"1.2em",
-        zIndex:"9999", boxShadow:"0 2px 6px rgba(0,0,0,0.2)"
-      });
-      document.body.style.paddingTop="50px";
-      document.body.prepend(nav);
-    });
+const scriptTag = document.getElementById("acwNav");
+let navbarTitle = null;
+
+if (scriptTag) {
+  const navAttr = scriptTag.getAttribute("data-acw-navbar");
+
+  if (navAttr && navAttr.toLowerCase() !== "false" && navAttr.trim() !== "") {
+    // If attribute is "true", use default "ACW"
+    navbarTitle = navAttr.toLowerCase() === "true" ? "ACW" : navAttr;
   }
+}
+
+if (navbarTitle !== null) {
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.getElementById("acw-navbar")) return;
+
+    const nav = document.createElement("nav");
+    nav.id = "acw-navbar";
+    nav.textContent = navbarTitle;
+    Object.assign(nav.style, {
+      position: "fixed",
+      top: "0",
+      left: "0",
+      width: "100%",
+      height: "50px",
+      backgroundColor: "#007BFF",
+      color: "#fff",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontFamily: "'Outfit', sans-serif",
+      fontSize: "1.2em",
+      zIndex: "9999",
+      boxShadow: "0 2px 6px rgba(0,0,0,0.2)"
+    });
+
+    // Push content down so navbar doesn't overlap
+    document.body.style.paddingTop = "50px";
+
+    document.body.prepend(nav);
+  });
+}
+
 
 })();
